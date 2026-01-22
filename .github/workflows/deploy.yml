@@ -18,7 +18,7 @@ jobs:
       - name: Set up AWS CLI
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          role-to-assume: arn:aws:iam::248189921392:role/my-OIDC  # The ARN of your IAM role (role name provided by you)
+          role-to-assume: arn:aws:iam::248189921392:role/GITHUB_OIDC  # The ARN of your IAM role (role name provided by you)
           aws-region: ${{ secrets.AWS_REGION }}  # The AWS region where the bucket is located (store region in GitHub secrets)
 
       # Step 3: Sync files to S3 bucket
