@@ -20,8 +20,6 @@ jobs:
         with:
           role-to-assume: arn:aws:iam::248189921392:role/my-OIDC  # The ARN of your IAM role (role name provided by you)
           aws-region: ${{ secrets.AWS_REGION }}  # The AWS region where the bucket is located (store region in GitHub secrets)
-          role-session-name: GitHubActionsSession  # A session name for the assumed role
-          audience: sts.amazonaws.com  # Audience for AWS role assumption
 
       # Step 3: Sync files to S3 bucket
       - name: Sync files to S3 bucket
