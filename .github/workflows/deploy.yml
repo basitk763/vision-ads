@@ -27,7 +27,4 @@ jobs:
         run: |
           aws s3 sync ./ s3://vision-ads --delete --exclude ".git/*"  # Sync files to your S3 bucket 'vision-ads'
 
-      # Optional: Invalidate CloudFront cache (if using CloudFront)
-      - name: Invalidate CloudFront cache
-        run: |
-          aws cloudfront create-invalidation --distribution-id your-distribution-id --paths "/*"  # Replace with your CloudFront distribution ID if using CloudFront
+     
