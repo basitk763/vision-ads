@@ -16,7 +16,7 @@ jobs:
 
       # Step 2: Set up AWS CLI using OIDC
       - name: Set up AWS CLI
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: arn:aws:iam::248189921392:role/GITHUB_OIDC  # The ARN of your IAM role (role name provided by you)
           aws-region: ${{ secrets.AWS_REGION }}  # The AWS region where the bucket is located (store region in GitHub secrets)
