@@ -18,16 +18,16 @@ jobs:
       - name: Set up AWS CLI
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          role-to-assume: arn:aws:iam::248189921392:role/my-OIDC  # The ARN of the IAM role you created
-          aws-region: ${{ secrets.AWS_REGION }}  # The AWS region where the bucket is located
+          role-to-assume: arn:aws:iam::248189921392:role/my-OIDC  # The ARN of your IAM role (role name provided by you)
+          aws-region: ${{ secrets.AWS_REGION }}  # The AWS region where the bucket is located (store region in GitHub secrets)
           role-session-name: GitHubActionsSession  # A session name for the assumed role
 
       # Step 3: Sync files to S3 bucket
       - name: Sync files to S3 bucket
         run: |
-          aws s3 sync ./ s3://vision-ads --delete --exclude ".git/*"  # Replace with your bucket name
+          aws s3 sync ./ s3://vision-ads --delete --exclude ".git/*"  # Sync files to your S3 bucket 'vision-ads'
 
       # Optional: Invalidate CloudFront cache (if using CloudFront)
       - name: Invalidate CloudFront cache
         run: |
-          aws cloudfront create-invalidation --distribution-id ABCD1234XYZ --paths "/*"  # Replace with your distribution ID
+          aws cloudfront create-invalidation --distribution-id your-distribution-id --paths "/*"  # Replace with your CloudFront distribution ID if using CloudFront
