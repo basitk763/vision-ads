@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main  # Trigger deployment on push to the main branch
+permissions:
+  id-token: write
+  contents: read
 
 jobs:
   deploy:
