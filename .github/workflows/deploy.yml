@@ -1,48 +1,33 @@
-name: Deploy static site to S3
+name: Deploy Static Website to S3
 
 on:
   push:
-    branches:  "main" 
-
-permissions:
-  contents: read
+    branches:
+      - main  # Trigger deployment on push to the main branch
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # Use the latest Ubuntu runner
 
     steps:
+      # Step 1: Checkout the code
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v2
 
-      - name: Setup Node (only needed if you have package.json)
-        if: hashFiles('package.json') != ''
-        uses: actions/setup-node@v4
+      # Step 2: Set up AWS CLI using OIDC
+      - name: Set up AWS CLI
+        uses: aws-actions/configure-aws-credentials@v1
         with:
-          node-version: "20"
-          cache: "npm"
+          role-to-assume: arn:aws:iam::YOUR_AWS_ACCOUNT_ID:role/YOUR_ROLE_NAME  # The ARN of the IAM role you created
+          aws-region: ${{ secrets.AWS_REGION }}  # The AWS region where the bucket is located
+          role-session-name: GitHubActionsSession  # A session name for the assumed role
 
-      - name: Install dependencies (React/Node projects)
-        if: hashFiles('package.json') != ''
-        run: npm i
+      # Step 3: Sync files to S3 bucket
+      - name: Sync files to S3 bucket
+        run: |
+          aws s3 sync ./ s3://your-bucket-name --delete --exclude ".git/*"
 
-      - name: Build (React/Node projects)
-        if: hashFiles('package.json') != ''
-        run: npm run build
-
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
-
-      # If React: deploy build/ folder
-      - name: Deploy React build to S3
-        if: hashFiles('package.json') != ''
-        run: aws s3 sync build/ s3://${{ secrets.S3_BUCKET }} --delete
-
-      # If plain static: deploy repo root (excluding .git and workflow files)
-      - name: Deploy static files to S3
-        if: hashFiles('package.json') == ''
-        run: aws s3 sync . s3://${{ secrets.S3_BUCKET }} --delete --exclude ".git/*" --exclude ".github/*"
+      # Optional: Invalidate CloudFront cache (if using CloudFront)
+      - name: Invalidate CloudFront cache
+        run: |
+          aws cloudfront create-invalidation --distribution-id your-distribution-id --paths "/*"
