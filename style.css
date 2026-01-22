@@ -1,0 +1,144 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.navbar{
+    background-color: black;
+    padding-left: 20px;
+    height: 90px;
+    width: 100%;
+}
+.nav-link{
+    color: white !important;
+    margin-left: 10px;
+    font-weight: 700;
+}
+.btn1{
+    background: rgb(56, 56, 246);
+    color: white;
+    font-weight: 400;
+    height: 45px;
+    width: 150px;
+    outline: 0;
+    border: 0;
+}
+.part2{
+    background-color: black;
+}
+.part2 h5{
+    color: rgb(75, 75, 241);
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.part2 h1{
+    color: whitesmoke;
+    text-transform: uppercase;
+    font-weight: bolder;
+}
+.part2 p{
+    color: whitesmoke;
+}
+.part3{
+    background: #3F3CC8;
+    height: 300px;
+    width: 100%;
+}
+.part3 h3{
+    color: whitesmoke;
+    text-transform: uppercase;
+}
+.part3 h1{
+    color: whitesmoke;
+    text-transform: uppercase;
+    font-weight: 900;
+}
+
+.part4{
+    background-color: black;
+}
+.video{
+    height: 80%;
+    width: 80%;
+    margin-top: -100px;
+}
+
+.part4 img{
+    height: 60px;
+    width: 80px;
+}
+.part4 h4{
+    font-weight: 600;
+}
+.icons img{
+    color: black;
+    height: 130px;
+    width: 90px;
+}
+.icons h3{
+    color: white;
+    font-weight: 600;
+}
+
+.part6 h2{
+    font-weight: bolder;
+}
+#part6-imggg{
+    height: 420px;
+    width: 450px;
+}
+
+.part7 h3{
+    font-weight: 900;
+    color: #3F3CC8;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.part7 h1{
+    color: white;
+    text-transform: uppercase;
+    font-weight: bolder;
+}
+
+.part7 img{
+    padding-top: 150px;
+    padding-bottom: 100px;
+}
+
+.match{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} 
+
+.manDiv{
+    display: flex;
+    gap: 30px;
+}
+@media only screen and (max-width: 996px) {
+    .manDiv{
+        display: block;
+    }
+    
+}
+.nav-link {
+    text-align: center;
+    padding-right: 30px;
+  }
+  
+
+.btn1 {
+    background-color: #007bff; 
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+.btn1:hover {
+    background-color: #0056b3; 
+  }
+#header-img{
+    padding-left: 80px;
+}  
